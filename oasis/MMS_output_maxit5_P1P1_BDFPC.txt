@@ -1,0 +1,152 @@
+[1;37;34mStart simulations[0m
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+  WARNING: The number of integration points for each cell will be: 100
+           Consider using the option 'quadrature_degree' to reduce the number of points
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+  WARNING: The number of integration points for each cell will be: 100
+           Consider using the option 'quadrature_degree' to reduce the number of points
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+[1;37;31mTotal computing time = 91.294756[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-02
+dx     2.828427e-01
+L2 norm (ux-uxmms) 3.399135e-01
+L2 norm (uy-uymms) 3.277190e-01
+L2 norm (p-pmms)   3.874467e+01
+H1 norm (ux-uxmms) 3.731833e+00
+H1 norm (uy-uymms) 3.687250e+00
+H1 norm (p-pmms)   4.610276e+02
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 95.041880[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-02
+dx     1.414214e-01
+L2 norm (ux-uxmms) 7.289269e-02
+L2 norm (uy-uymms) 6.775941e-02
+L2 norm (p-pmms)   5.804846e+00
+H1 norm (ux-uxmms) 8.455217e-01
+H1 norm (uy-uymms) 8.360128e-01
+H1 norm (p-pmms)   1.813023e+02
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 389.158378[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-02
+dx     2.828427e-02
+L2 norm (ux-uxmms) 7.146260e-03
+L2 norm (uy-uymms) 7.073529e-03
+L2 norm (p-pmms)   7.887543e-02
+H1 norm (ux-uxmms) 1.014396e+00
+H1 norm (uy-uymms) 1.015350e+00
+H1 norm (p-pmms)   8.704321e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 781.399800[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-02
+dx     1.885618e-02
+L2 norm (ux-uxmms) 7.964871e-03
+L2 norm (uy-uymms) 7.960194e-03
+L2 norm (p-pmms)   3.778861e+01
+H1 norm (ux-uxmms) 1.703354e+00
+H1 norm (uy-uymms) 1.704807e+00
+H1 norm (p-pmms)   3.802686e+01
+ 
+[1;37;34mStart simulations[0m
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+  WARNING: The number of integration points for each cell will be: 100
+           Consider using the option 'quadrature_degree' to reduce the number of points
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+  WARNING: The number of integration points for each cell will be: 100
+           Consider using the option 'quadrature_degree' to reduce the number of points
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+[1;37;31mTotal computing time = 19.499410[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     3.000000e-01
+dx     2.828427e-02
+L2 norm (ux-uxmms) 1.080101e+00
+L2 norm (uy-uymms) 1.365399e+00
+L2 norm (p-pmms)   5.471707e-01
+H1 norm (ux-uxmms) 9.584498e+01
+H1 norm (uy-uymms) 1.041813e+02
+H1 norm (p-pmms)   2.681590e+00
+ 
+[1;37;34mStart simulations[0m
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+  WARNING: The number of integration points for each cell will be: 100
+           Consider using the option 'quadrature_degree' to reduce the number of points
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+  WARNING: The number of integration points for each cell will be: 100
+           Consider using the option 'quadrature_degree' to reduce the number of points
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+[1;37;31mTotal computing time = 45.895974[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-01
+dx     2.828427e-02
+L2 norm (ux-uxmms) 3.133347e-01
+L2 norm (uy-uymms) 3.357848e-01
+L2 norm (p-pmms)   4.142996e-02
+H1 norm (ux-uxmms) 3.034413e+01
+H1 norm (uy-uymms) 3.118744e+01
+H1 norm (p-pmms)   8.906554e-01
+ 
+[1;37;34mStart simulations[0m
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+  WARNING: The number of integration points for each cell will be: 100
+           Consider using the option 'quadrature_degree' to reduce the number of points
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+  WARNING: The number of integration points for each cell will be: 100
+           Consider using the option 'quadrature_degree' to reduce the number of points
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+Calling FFC just-in-time (JIT) compiler, this may take some time.
+[1;37;31mTotal computing time = 138.738071[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     3.000000e-02
+dx     2.828427e-02
+L2 norm (ux-uxmms) 4.923943e-02
+L2 norm (uy-uymms) 4.947359e-02
+L2 norm (p-pmms)   5.122564e-02
+H1 norm (ux-uxmms) 6.315265e+00
+H1 norm (uy-uymms) 6.337485e+00
+H1 norm (p-pmms)   2.537286e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 403.385290[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-02
+dx     2.828427e-02
+L2 norm (ux-uxmms) 7.146260e-03
+L2 norm (uy-uymms) 7.073529e-03
+L2 norm (p-pmms)   7.887543e-02
+H1 norm (ux-uxmms) 1.014396e+00
+H1 norm (uy-uymms) 1.015350e+00
+H1 norm (p-pmms)   8.704321e+00
+ 
