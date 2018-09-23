@@ -1,0 +1,693 @@
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 18.449194[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     2.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.290471e-01
+L2 norm (p-pmms)   3.473719e-01
+H1 norm (p-pmms)   1.476020e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 18.367490[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     2.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.844459e-03
+L2 norm (p-pmms)   1.911413e-01
+H1 norm (p-pmms)   1.217449e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 7.488936[0m
+ 
+Scheme BDFPC_Fast
+T      1.000000e+00
+dt     2.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 3.766157e-03
+L2 norm (p-pmms)   7.558367e-02
+H1 norm (p-pmms)   5.022063e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 7.459153[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 8.128585e-03
+L2 norm (p-pmms)   1.604080e-01
+H1 norm (p-pmms)   1.073163e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 36.919697[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.755614e-01
+L2 norm (p-pmms)   7.870782e-02
+H1 norm (p-pmms)   6.572948e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 36.862760[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     1.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.970215e-03
+L2 norm (p-pmms)   8.219996e-02
+H1 norm (p-pmms)   7.980316e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 14.896053[0m
+ 
+Scheme BDFPC_Fast
+T      1.000000e+00
+dt     1.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.156942e-03
+L2 norm (p-pmms)   2.467535e-02
+H1 norm (p-pmms)   8.007283e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 14.807938[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     1.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.949000e-03
+L2 norm (p-pmms)   6.893017e-02
+H1 norm (p-pmms)   7.122025e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 74.566718[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     5.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 8.237632e-02
+L2 norm (p-pmms)   1.891206e-02
+H1 norm (p-pmms)   3.422875e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 73.657866[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     5.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.241688e-04
+L2 norm (p-pmms)   3.079156e-02
+H1 norm (p-pmms)   4.905633e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 28.891615[0m
+ 
+Scheme BDFPC_Fast
+T      1.000000e+00
+dt     5.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 3.392949e-04
+L2 norm (p-pmms)   2.071031e-02
+H1 norm (p-pmms)   1.312039e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 29.740846[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     5.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.327147e-04
+L2 norm (p-pmms)   2.469928e-02
+H1 norm (p-pmms)   4.432000e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 188.840231[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     2.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 2.852818e-02
+L2 norm (p-pmms)   4.356716e-03
+H1 norm (p-pmms)   2.441840e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 183.164640[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     2.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 9.747016e-05
+L2 norm (p-pmms)   6.660015e-03
+H1 norm (p-pmms)   2.796932e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 70.932737[0m
+ 
+Scheme BDFPC_Fast
+T      1.000000e+00
+dt     2.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.002138e-04
+L2 norm (p-pmms)   3.774026e-02
+H1 norm (p-pmms)   2.565083e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 68.743101[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 6.724572e-05
+L2 norm (p-pmms)   5.399115e-03
+H1 norm (p-pmms)   2.597430e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 380.339369[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.045976e-02
+L2 norm (p-pmms)   2.599885e-03
+H1 norm (p-pmms)   3.326905e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 377.693309[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     1.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.957560e-05
+L2 norm (p-pmms)   2.635354e-03
+H1 norm (p-pmms)   2.153588e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 138.939413[0m
+ 
+Scheme BDFPC_Fast
+T      1.000000e+00
+dt     1.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 8.248904e-05
+L2 norm (p-pmms)   6.246782e-02
+H1 norm (p-pmms)   4.287472e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 136.139101[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     1.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 6.879017e-05
+L2 norm (p-pmms)   2.410350e-03
+H1 norm (p-pmms)   2.092898e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 762.588720[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     5.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 3.646092e-03
+L2 norm (p-pmms)   2.824350e-03
+H1 norm (p-pmms)   5.783486e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 940.912566[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     5.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.873332e-05
+L2 norm (p-pmms)   2.233829e-03
+H1 norm (p-pmms)   3.149320e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 324.588075[0m
+ 
+Scheme BDFPC_Fast
+T      1.000000e+00
+dt     5.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 8.173738e-05
+L2 norm (p-pmms)   1.041859e-01
+H1 norm (p-pmms)   7.184747e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 322.775578[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     5.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.597057e-05
+L2 norm (p-pmms)   2.261476e-03
+H1 norm (p-pmms)   3.099266e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 3222.680986[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     2.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.904016e-04
+L2 norm (p-pmms)   3.978734e-03
+H1 norm (p-pmms)   1.482331e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 2658.707359[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     2.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.901781e-05
+L2 norm (p-pmms)   3.309249e-03
+H1 norm (p-pmms)   1.127055e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 646.800930[0m
+ 
+Scheme BDFPC_Fast
+T      1.000000e+00
+dt     2.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 8.307562e-05
+L2 norm (p-pmms)   2.060592e-01
+H1 norm (p-pmms)   1.425056e+02
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 637.210007[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.854440e-05
+L2 norm (p-pmms)   3.198048e-03
+H1 norm (p-pmms)   9.682276e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 44.497063[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     2.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.105236e-03
+L2 norm (p-pmms)   7.565075e-02
+H1 norm (p-pmms)   5.777717e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 44.017850[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     2.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.869210e-03
+L2 norm (p-pmms)   1.911463e-01
+H1 norm (p-pmms)   1.217488e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 26.502511[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 2.101985e-02
+L2 norm (p-pmms)   1.718882e-01
+H1 norm (p-pmms)   1.096150e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 88.989272[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 2.908584e-03
+L2 norm (p-pmms)   2.178304e-02
+H1 norm (p-pmms)   4.127497e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 89.002216[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     1.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.968561e-03
+L2 norm (p-pmms)   8.223414e-02
+H1 norm (p-pmms)   7.981085e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 53.490110[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     1.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 2.156994e-03
+L2 norm (p-pmms)   6.979494e-02
+H1 norm (p-pmms)   7.139869e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 176.578525[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     5.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 6.166289e-03
+L2 norm (p-pmms)   6.835899e-03
+H1 norm (p-pmms)   1.427778e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 177.323452[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     5.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.155243e-04
+L2 norm (p-pmms)   3.083484e-02
+H1 norm (p-pmms)   4.902985e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 106.236318[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     5.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.641583e-04
+L2 norm (p-pmms)   2.462185e-02
+H1 norm (p-pmms)   4.422026e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 441.959782[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     2.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.483333e-01
+L2 norm (p-pmms)   1.090870e-01
+H1 norm (p-pmms)   8.407184e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 442.588926[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     2.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 5.818375e-05
+L2 norm (p-pmms)   6.549638e-03
+H1 norm (p-pmms)   2.758836e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 257.679131[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.151209e-05
+L2 norm (p-pmms)   5.169341e-03
+H1 norm (p-pmms)   2.541424e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 884.547545[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     1.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 5.714769e+02
+L2 norm (p-pmms)   5.177198e+03
+H1 norm (p-pmms)   1.862043e+06
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 883.265392[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     1.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.409528e-05
+L2 norm (p-pmms)   2.002457e-03
+H1 norm (p-pmms)   1.860623e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 422.400637[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     1.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.772183e-05
+L2 norm (p-pmms)   1.591723e-03
+H1 norm (p-pmms)   1.730393e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 1882.931796[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     5.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.071445e+08
+L2 norm (p-pmms)   1.751651e+09
+H1 norm (p-pmms)   2.995978e+11
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 1768.676955[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     5.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 3.490426e-06
+L2 norm (p-pmms)   6.301920e-04
+H1 norm (p-pmms)   1.236692e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 723.934909[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     5.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.417157e-06
+L2 norm (p-pmms)   5.126028e-04
+H1 norm (p-pmms)   1.155562e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 4928.413080[0m
+ 
+Scheme BDFPC
+T      1.000000e+00
+dt     2.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 3.667982e+09
+L2 norm (p-pmms)   3.101254e+12
+H1 norm (p-pmms)   4.739963e+14
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 4428.757953[0m
+ 
+Scheme BDFPC_norot
+T      1.000000e+00
+dt     2.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 5.563006e-07
+L2 norm (p-pmms)   1.448522e-04
+H1 norm (p-pmms)   5.787102e-02
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 1414.808648[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.027243e-07
+L2 norm (p-pmms)   1.229349e-04
+H1 norm (p-pmms)   5.276587e-02
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 26.112627[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.006840e-03
+L2 norm (p-pmms)   1.686011e-01
+H1 norm (p-pmms)   1.091686e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 52.250658[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     1.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.239645e-03
+L2 norm (p-pmms)   6.900957e-02
+H1 norm (p-pmms)   7.127041e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 104.149603[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     5.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 7.342267e-04
+L2 norm (p-pmms)   2.461573e-02
+H1 norm (p-pmms)   4.434256e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 232.356552[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 5.534410e-05
+L2 norm (p-pmms)   5.172731e-03
+H1 norm (p-pmms)   2.541783e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 390.347637[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     1.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.330499e-05
+L2 norm (p-pmms)   1.592891e-03
+H1 norm (p-pmms)   1.730432e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 674.576390[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     5.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 3.518409e-06
+L2 norm (p-pmms)   5.128643e-04
+H1 norm (p-pmms)   1.155564e-01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 1337.181658[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 1.582639e-06
+L2 norm (p-pmms)   1.231340e-04
+H1 norm (p-pmms)   5.276494e-02
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 26.248035[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 4.007539e-01
+L2 norm (p-pmms)   1.107487e+00
+H1 norm (p-pmms)   5.101284e+00
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 52.296847[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     1.000000e-01
+dx     7.071068e-03
+L2 norm (ux-uxmms) 3.364346e-01
+L2 norm (p-pmms)   1.640571e+00
+H1 norm (p-pmms)   1.162183e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 104.422015[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     5.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 2.866406e-01
+L2 norm (p-pmms)   2.116608e+00
+H1 norm (p-pmms)   2.253043e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 261.897210[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 2.541778e-01
+L2 norm (p-pmms)   2.491509e+00
+H1 norm (p-pmms)   4.238774e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 426.268013[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     1.000000e-02
+dx     7.071068e-03
+L2 norm (ux-uxmms) 2.456691e-01
+L2 norm (p-pmms)   2.606821e+00
+H1 norm (p-pmms)   6.086753e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 699.836583[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     5.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 2.424547e-01
+L2 norm (p-pmms)   2.652330e+00
+H1 norm (p-pmms)   8.221778e+01
+ 
+[1;37;34mStart simulations[0m
+[1;37;31mTotal computing time = 1455.679318[0m
+ 
+Scheme IPCS_ABCN
+T      1.000000e+00
+dt     2.000000e-03
+dx     7.071068e-03
+L2 norm (ux-uxmms) 2.410733e-01
+L2 norm (p-pmms)   2.671713e+00
+H1 norm (p-pmms)   1.132161e+02
+ 
