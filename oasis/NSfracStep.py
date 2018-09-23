@@ -34,6 +34,7 @@ problems/NSfracStep/__init__.py for all possible parameters.
 
 import importlib
 from common import *
+import time
 
 commandline_kwargs = parse_command_line()
 
@@ -68,12 +69,11 @@ uc_comp = u_components + scalar_components
 newfolder, tstepfiles = create_initial_folders(**vars())
 
 # Declare FunctionSpaces and arguments
-V = W = Q = FunctionSpace(mesh, 'CG', velocity_degree,
+V = Q = FunctionSpace(mesh, 'CG', velocity_degree,
                       constrained_domain=constrained_domain)
 if velocity_degree != pressure_degree:
     Q = FunctionSpace(mesh, 'CG', pressure_degree,
                       constrained_domain=constrained_domain)
-
 W = VectorFunctionSpace(mesh, 'CG', velocity_degree,
                         constrained_domain=constrained_domain)
 
@@ -150,7 +150,8 @@ u_sol, p_sol, c_sol = get_solvers(**vars())
 
 # Get constant body forces
 f = body_force(**vars())
-assert(isinstance(f, Coefficient))
+
+#assert(isinstance(f, Coefficient))
 b0 = dict((ui, assemble(v * f[i] * dx)) for i, ui in enumerate(u_components))
 
 # Get scalar sources
@@ -165,6 +166,7 @@ vars().update(setup(**vars()))
 # Anything problem specific
 vars().update(pre_solve_hook(**vars()))
 
+
 #tic()
 stop = False
 total_timer = OasisTimer("Start simulations", True)
@@ -174,12 +176,16 @@ while t < (T - tstep * DOLFIN_EPS) and not stop:
     inner_iter = 0
     udiff = array([1e8])  # Norm of velocity change over last inner iter
     num_iter = max(iters_on_first_timestep, max_iter) if tstep == 1 else max_iter
+
     update_prescribed_motion(**vars())
 
     start_timestep_hook(**vars())
+
     b0 = dict((ui, assemble(v*f[i]*dx)) for i, ui in enumerate(u_components))
 
     while udiff[0] > max_error and inner_iter < num_iter:
+        #print(udiff[0])
+        #print(norm(dp_.vector()))
         inner_iter += 1
 
         t0 = OasisTimer("Tentative velocity")
@@ -216,7 +222,7 @@ while t < (T - tstep * DOLFIN_EPS) and not stop:
             scalar_solve(**vars())
             t1.stop()
 
-    temporal_hook(**vars())
+    #temporal_hook(**vars())
 
     # Save solution if required and check for killoasis file
     stop = save_solution(**vars())
@@ -244,15 +250,6 @@ while t < (T - tstep * DOLFIN_EPS) and not stop:
     if AB_projection_pressure and t < (T - tstep * DOLFIN_EPS) and not stop:
         x_['p'].axpy(0.5, dp_.vector())
 
-    # Compute deformation increment
-    move.vector().zero()
-    move.vector().axpy(1, d_.vector())
-    #move.vector().axpy(-1, d_1.vector())
-
-    # Move mesh
-    ALE.move(mesh, move)
-    mesh.bounding_box_tree().build(mesh)
-
 total_timer.stop()
 #list_timings(TimingClear_keep, [TimingType_wall])
 info_red('Total computing time = {0:f}'.format(total_timer.elapsed()[0]))
@@ -264,4 +261,5 @@ oasis_memory('Final memory use ')
 #         str(oasis_memory.memory - total_initial_dolfin_memory) + " MB (RSS)")
 
 # Final hook
+temporal_hook(**vars())
 theend_hook(**vars())

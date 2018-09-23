@@ -6,6 +6,7 @@ __license__ = "GNU Lesser GPL version 3 or any later version"
 
 from ..NSfracStep import *
 
+set_log_level(99)
 
 # Override some problem specific parameters
 def problem_parameters(NS_parameters, NS_expressions, **NS_namespace):
@@ -15,15 +16,16 @@ def problem_parameters(NS_parameters, NS_expressions, **NS_namespace):
         dt=0.001,
         Nx=20, Ny=20,
         folder="taylorgreen2D_results",
-        plot_interval=1000,
-        save_step=10000,
-        checkpoint=10000,
-        print_intermediate_info=1000,
-        compute_error=1,
+        plot_interval=1e6,
+        save_step=1e6,
+        checkpoint=1e6,
+        print_intermediate_info=1e6,
+        compute_error=1e6,
         use_krylov_solvers=True,
         velocity_degree=1,
         pressure_degree=1,
-        krylov_report=False)
+        krylov_report=False,
+        print_velocity_pressure_convergence=False)
 
     NS_parameters['krylov_solvers'] = {'monitor_convergence': False,
                                        'report': False,
@@ -97,6 +99,7 @@ def temporal_hook(q_, t, nu, VV, dt, plot_interval, initial_fields, tstep, sys_c
     Remember pressure is computed in between timesteps.
 
     """
+
     if tstep % plot_interval == 0:
         plot(q_['u0'], title='u')
         plot(q_['u1'], title='v')

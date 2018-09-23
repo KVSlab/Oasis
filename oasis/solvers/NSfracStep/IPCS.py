@@ -44,6 +44,7 @@ def setup(u, q_, q_1, uc_comp, u_components, dt, v, U_AB, u_1, u_2, q_2,
     Fp = (inner(grad(q), grad(p)) * dx - inner(grad(p_), grad(q)) * dx
           + (1. / dt) * div(u_) * q * dx)
 
+
     # Scalar with SUPG
     h = CellDiameter(mesh)
     #vw = v + h*inner(grad(v), U_AB)
@@ -63,10 +64,7 @@ def velocity_tentative_solve(ui, F, q_, bcs, x_, b_tmp, udiff, **NS_namespace):
     b_tmp[ui][:] = x_[ui]
     A, L = system(F[ui])
     solve(A == L, q_[ui], bcs[ui])
-    #tmp_solver = 
-
     udiff[0] += norm(b_tmp[ui] - x_[ui])
-
 
 
 def pressure_solve(Fp, p_, bcs, dp_, x_, u_, q_, Q, **NS_namespace):
@@ -83,6 +81,7 @@ def velocity_update(u_components, q_, bcs, Fu, dp_, V, dt, **NS_namespace):
     """Update the velocity after finishing pressure velocity iterations."""
     for ui in u_components:
         solve(lhs(Fu[ui]) == rhs(Fu[ui]), q_[ui], bcs[ui])
+
 
 def scalar_solve(ci, F, q_, bcs, **NS_namespace):
     """Solve scalar equation."""

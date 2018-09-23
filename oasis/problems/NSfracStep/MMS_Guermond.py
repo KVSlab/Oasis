@@ -11,24 +11,10 @@ set_log_level(99)
 
 # Override some problem specific parameters
 def problem_parameters(NS_parameters, NS_expressions, commandline_kwargs, **NS_namespace):
-    eps  = 1e-6
-    #ux_mms = "cos(x[0] + x[1]) * t_e + eps"
-    #uy_mms = "-cos(x[0] + x[1]) * t_e + eps"
-    #p_mms = "(sin(x[1]) + cos(x[0])) * t_e + eps"
-    #ux_mms = "(-sin(x[1] * pi) + cos(x[0] * pi)) * (t_e + 1) + eps"
-    #uy_mms = "(-pi*sin(x[0] * pi)*x[1] + cos(x[0] * pi)) * (t_e + 1) + eps"
-    #p_mms  = "cos(x[1] * pi) * sin(x[0] * pi) * (t_e + 1) + eps"
-    #ux_mms = " pi*cos(t_e) * sin(2*pi*x[1]) * sin(pi*x[0])*sin(pi*x[0]) + eps "
-    #uy_mms = "-pi*cos(t_e) * sin(2*pi*x[0]) * sin(pi*x[1])*sin(pi*x[1]) + eps "
-    #p_mms  = " -cos(t_e) * cos(pi*x[0]) * sin(pi*x[1]) + eps "
-    ### MMS from Guermond et al., 2006 (for Stokes eq.)
+    eps  = 1e-3
     ux_mms = " pi*sin(t_e)*sin(2*pi*x[1])*sin(pi*x[0])*sin(pi*x[0]) "
     uy_mms = "-pi*sin(t_e)*sin(2*pi*x[0])*sin(pi*x[1])*sin(pi*x[1]) "
-    p_mms  = " sin(t_e)*cos(pi*x[0])*sin(pi*x[1]) "
-    # ux_mms = " sin(x[0]+t_e)*sin(x[1]+t_e) + eps "
-    # uy_mms = " cos(x[0]+t_e)*cos(x[1]+t_e) + eps "
-    # p_mms  = " sin(x[0]-x[1]+t_e) + eps "
-
+    p_mms  = " sin(t_e)*cos(pi*x[0])*sin(pi*x[1])  "
 
     NS_parameters.update(dict(
         ux_mms = ux_mms,
@@ -69,29 +55,23 @@ def problem_parameters(NS_parameters, NS_expressions, commandline_kwargs, **NS_n
 # Create a mesh here
 def mesh(N, **params):
     #m = UnitSquareMesh(N, N)
-    m = RectangleMesh(Point(-0.5, -0.5), Point(0.5, 0.5), N, N)
+    m = RectangleMesh(Point(-1, -1), Point(1.0, 1.0), N, N)
     return m
 
 
 def create_bcs(ux_e, uy_e, p_e, V, Q, sys_comp, mesh, **NS_namespace):
-    #external_v = AutoSubDomain(lambda x, b: b and (near(x[1],0) or near(x[0],1) or near(x[1],1)))
-    external_v = AutoSubDomain(lambda x, b: b)
+    external = AutoSubDomain(lambda x, b: b)
     boundary = MeshFunction("size_t", mesh, mesh.topology().dim() - 1)
     boundary.set_all(0)
-    external_v.mark(boundary, 1)
-    #external_p = AutoSubDomain(lambda x, b: b and near(x[1],-0.5) )
-    #external_p.mark(boundary, 2)
+    external.mark(boundary, 1)
     #f = File("test.pvd")
     #f << boundary
-
     bcs = dict((ui, []) for ui in sys_comp)
     bc0 = DirichletBC(V, ux_e, boundary, 1)
     bc1 = DirichletBC(V, uy_e, boundary, 1)
-    bcp = DirichletBC(Q, p_e, boundary, 2)
-    #bcp = DirichletBC(Q, 100, 'near(x[1],0.0) && near(x[0],0.0)') # Only with odd value of N
     bcs['u0'] = [bc0]
     bcs['u1'] = [bc1]
-    bcs['p']  = []#[bcp]
+    bcs['p']  = []
 
     return bcs
 
@@ -157,13 +137,13 @@ def pre_solve_hook(V, Q, mesh, newfolder, q_, t, velocity_degree, **NS_namespace
 
 
 def start_timestep_hook(t, dt, p_e, ux_e, uy_e, t_e, **NS_namespace):
-    if 'IPCS' in NS_parameters['solver']:
-        p_e.t_e  = t - 0.5*dt
-    else:
-        p_e.t_e  = t
     ux_e.t_e = t
     uy_e.t_e = t
+    p_e.t_e  = t
     t_e.assign(t)
+    if 'IPCS' in NS_parameters['solver']:
+        p_e.t_e  = t - 0.5*dt
+        t_e.assign(t-dt/2)
 
 
 def temporal_hook(t, dt, q_, viz_sol, p_e, perror, pmms, psol, ux_e, uxerror,

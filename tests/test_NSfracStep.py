@@ -138,5 +138,5 @@ if __name__ == '__main__':
     #test_DrivenCavity()
     #test_TaylorGreen2D()
     #test_spatial_rate_of_convergence(1, "BDFPC_Fast")
-    test_spatial_rate_of_convergence(1, "IPCS_ABCN")
-    #test_temporal_rate_of_convergence()
+    #test_spatial_rate_of_convergence(1, "IPCS_ABCN")
+    test_temporal_rate_of_convergence()

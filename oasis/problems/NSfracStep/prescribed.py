@@ -128,7 +128,7 @@ def pre_solve_hook(W, V, u_, mesh, newfolder, T, d_, velocity_degree, **NS_names
 
     mesh_prec = PETScPreconditioner("ilu")  # in tests sor are faster ..
     mesh_sol = PETScKrylovSolver("gmres", mesh_prec)
-    w_vec = Function(Vv)
+    w_vec = Function(W)
 
     krylov_solvers = dict(monitor_convergence=False,
                           report=False,
@@ -146,15 +146,11 @@ def pre_solve_hook(W, V, u_, mesh, newfolder, T, d_, velocity_degree, **NS_names
 
 
 def update_prescribed_motion(t, dt, d_, d_1, w_, u_components, tstep, mesh_sol, F_mesh,
-                             bc_mesh, w_vec, left_ex, NS_expressions,
+                             bc_mesh, w_vec, left_ex, NS_expressions, mesh,
                              a_mesh, l_mesh, A_mesh, L_mesh,
                              **NS_namespace):
     # Update time
     left_ex.dt = dt
-
-    # Read deformation
-    #d_1.vector().zero()
-    #d_1.vector().axpy(1, d_.vector())
 
     # Solve for d and w
     assemble(a_mesh, tensor=A_mesh)
@@ -167,11 +163,14 @@ def update_prescribed_motion(t, dt, d_, d_1, w_, u_components, tstep, mesh_sol, 
 
     w_vec.vector().zero()
     w_vec.vector().axpy(1/dt, d_.vector())
-    #w_vec.vector().axpy(-1/dt, d_1.vector())
 
     # Read velocity
     for i, ui in enumerate(u_components):
         assign(w_[ui], w_vec.sub(i))
+
+    # Move mesh
+    ALE.move(mesh, d_)
+    mesh.bounding_box_tree().build(mesh)
 
 
 def temporal_hook(t, d_, w_, q_, f, tstep, viz_u, viz_d, viz_p, u_components,

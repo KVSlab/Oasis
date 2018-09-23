@@ -60,7 +60,7 @@ def setup(u, q_, q_1, uc_comp, u_components, dt, v, U_AB, u_1, u_2, q_2,
              for i, ui in enumerate(u_components)}
 
     # Scalar with SUPG
-    h = CellSize(mesh)
+    h = CellDiameter(mesh)
     #vw = v + h*inner(grad(v), u_)
     vw = v
     n = FacetNormal(mesh)
@@ -90,7 +90,8 @@ def pressure_solve(Fp, p_, bcs, dp_, x_, nu, divu, Q, beta, **NS_namespace):
     solve(lhs(Fp) == rhs(Fp), p_, bcs['p'])
     if bcs['p'] == []:
         normalize(p_.vector())
-    dp_.vector()._scale(-1)
+    #dp_.vector()._scale(-1)
+    dp_.vector()[:] = - dp_.vector()[:]
     dp_.vector().axpy(1.0, x_['p'])
     divu()
     dp_.vector().axpy(nu, divu.vector())
