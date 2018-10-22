@@ -11,33 +11,27 @@ set_log_level(99)
 
 # Override some problem specific parameters
 def problem_parameters(NS_parameters, NS_expressions, commandline_kwargs, **NS_namespace):
-    eps  = 1e-6
-    #ux_mms = "cos(x[0] + x[1]) * t_e + eps"
-    #uy_mms = "-cos(x[0] + x[1]) * t_e + eps"
-    #p_mms = "(sin(x[1]) + cos(x[0])) * t_e + eps"
-    #ux_mms = "(-sin(x[1] * pi) + cos(x[0] * pi)) * (t_e + 1) + eps"
-    #uy_mms = "(-pi*sin(x[0] * pi)*x[1] + cos(x[0] * pi)) * (t_e + 1) + eps"
-    #p_mms  = "cos(x[1] * pi) * sin(x[0] * pi) * (t_e + 1) + eps"
-    #ux_mms = " pi*cos(t_e) * sin(2*pi*x[1]) * sin(pi*x[0])*sin(pi*x[0]) + eps "
-    #uy_mms = "-pi*cos(t_e) * sin(2*pi*x[0]) * sin(pi*x[1])*sin(pi*x[1]) + eps "
-    #p_mms  = " -cos(t_e) * cos(pi*x[0]) * sin(pi*x[1]) + eps "
-    ### MMS from Guermond et al., 2006 (for Stokes eq.)
-    ux_mms = " pi*sin(t_e)*sin(2*pi*x[1])*sin(pi*x[0])*sin(pi*x[0]) "
-    uy_mms = "-pi*sin(t_e)*sin(2*pi*x[0])*sin(pi*x[1])*sin(pi*x[1]) "
-    p_mms  = " sin(t_e)*cos(pi*x[0])*sin(pi*x[1]) "
-    # ux_mms = " sin(x[0]+t_e)*sin(x[1]+t_e) + eps "
-    # uy_mms = " cos(x[0]+t_e)*cos(x[1]+t_e) + eps "
-    # p_mms  = " sin(x[0]-x[1]+t_e) + eps "
 
+    ### MMS SOLUTIONS
+    eps = 1e-6
+    nu_kin = 1
+    ### MMS from Guermond et al., 2006 (for Stokes eq.)
+    #ux_mms = " pi*sin(t_e)*sin(2*pi*x[1])*sin(pi*x[0])*sin(pi*x[0]) + eps"
+    #uy_mms = "-pi*sin(t_e)*sin(2*pi*x[0])*sin(pi*x[1])*sin(pi*x[1]) + eps"
+    #p_mms  = " sin(t_e)*cos(pi*x[0])*sin(pi*x[1]) + eps"
+    ### NS Taylor's solution (1923) from Ethier and Steinman, 1994
+    ux_mms = "-cos(pi*x[0])*sin(pi*x[1]) * exp(-2*pi*pi*nu*t_e) + eps"
+    uy_mms = "sin(pi*x[0])*cos(pi*x[1]) * exp(-2*pi*pi*nu*t_e) + eps"
+    p_mms  = "-(cos(2*pi*x[0])+cos(2*pi*x[1]))/4 * exp(-4*pi*pi*nu*t_e)  + eps"
 
     NS_parameters.update(dict(
         ux_mms = ux_mms,
         uy_mms = uy_mms,
         p_mms  = p_mms,
-        nu   = 1,
-        dt   = 0.001,
-        T    = 0.005,
-        N    = 40,
+        nu   = nu_kin,
+        dt   = 0.00001,
+        T    = 0.0001,
+        N    = 80,
         eps  = eps,
         print_intermediate_info = 1e10,
         folder="MMS_results",
@@ -60,9 +54,9 @@ def problem_parameters(NS_parameters, NS_expressions, commandline_kwargs, **NS_n
         p_degree = NS_parameters["pressure_degree"]
 
     NS_expressions.update(
-        ux_e = Expression(ux_mms, eps=eps, degree=v_degree, t_e=0),
-        uy_e = Expression(uy_mms, eps=eps, degree=v_degree, t_e=0),
-        p_e  = Expression(p_mms, eps=eps, degree=p_degree, t_e=0),
+        ux_e = Expression(ux_mms, eps=eps, degree=v_degree, nu=nu_kin, t_e=0),
+        uy_e = Expression(uy_mms, eps=eps, degree=v_degree, nu=nu_kin, t_e=0),
+        p_e  = Expression(p_mms, eps=eps, degree=p_degree, nu=nu_kin, t_e=0),
         t_e  = Constant(0.0) )
 
 

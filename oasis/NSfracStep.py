@@ -222,7 +222,7 @@ while t < (T - tstep * DOLFIN_EPS) and not stop:
             scalar_solve(**vars())
             t1.stop()
 
-    #temporal_hook(**vars())
+    temporal_hook(**vars())
 
     # Save solution if required and check for killoasis file
     stop = save_solution(**vars())
@@ -262,5 +262,4 @@ info_red('Total memory use of solver = ' +
          str(oasis_memory.memory - total_initial_dolfin_memory) + " MB (RSS)")
 
 # Final hook
-temporal_hook(**vars())
 theend_hook(**vars())
