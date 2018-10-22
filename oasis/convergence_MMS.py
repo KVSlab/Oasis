@@ -8,8 +8,6 @@ from IPython import embed
 
 ################################################################################
 # Reading text file
-#text   = open("MMS_output_unitsq_dt_all.txt", "r").read()
-#text   = open("MMS_Guermond_output_dt_all.txt", "r").read()
 text   = open("MMS_output_dt_all.txt", "r").read()
 number = "([0-9]+.[0-9]+e[+-][0-9]+)"
 word   = "(\S+)"

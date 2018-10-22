@@ -16,25 +16,26 @@ def problem_parameters(NS_parameters, NS_expressions, commandline_kwargs, **NS_n
     eps = 1e-6
     nu_kin = 1
     ### MMS from Guermond et al., 2006 (for Stokes eq.)
-    #ux_mms = " pi*sin(t_e)*sin(2*pi*x[1])*sin(pi*x[0])*sin(pi*x[0]) + eps"
-    #uy_mms = "-pi*sin(t_e)*sin(2*pi*x[0])*sin(pi*x[1])*sin(pi*x[1]) + eps"
-    #p_mms  = " sin(t_e)*cos(pi*x[0])*sin(pi*x[1]) + eps"
+    ux_mms = " pi*sin(t_e)*sin(2*pi*x[1])*sin(pi*x[0])*sin(pi*x[0]) + eps"
+    uy_mms = "-pi*sin(t_e)*sin(2*pi*x[0])*sin(pi*x[1])*sin(pi*x[1]) + eps"
+    p_mms  = " sin(t_e)*cos(pi*x[0])*sin(pi*x[1]) + eps"
     ### NS Taylor's solution (1923) from Ethier and Steinman, 1994
-    ux_mms = "-cos(pi*x[0])*sin(pi*x[1]) * exp(-2*pi*pi*nu*t_e) + eps"
-    uy_mms = "sin(pi*x[0])*cos(pi*x[1]) * exp(-2*pi*pi*nu*t_e) + eps"
-    p_mms  = "-(cos(2*pi*x[0])+cos(2*pi*x[1]))/4 * exp(-4*pi*pi*nu*t_e)  + eps"
+    #ux_mms = "-cos(pi*x[0])*sin(pi*x[1]) * exp(-2*pi*pi*nu*t_e) + eps"
+    #uy_mms = "sin(pi*x[0])*cos(pi*x[1]) * exp(-2*pi*pi*nu*t_e) + eps"
+    #p_mms  = "-(cos(2*pi*x[0])+cos(2*pi*x[1]))/4 * exp(-4*pi*pi*nu*t_e)  + eps"
 
     NS_parameters.update(dict(
         ux_mms = ux_mms,
         uy_mms = uy_mms,
         p_mms  = p_mms,
         nu   = nu_kin,
-        dt   = 0.00001,
-        T    = 0.0001,
+        dt   = 0.001,
+        T    = 0.005,
         N    = 80,
         eps  = eps,
         print_intermediate_info = 1e10,
         folder="MMS_results",
+        xstep_save = 1,
         iters_on_first_timestep = 1,
         max_iter  = 1,
         max_error = 1e-9,
@@ -62,30 +63,22 @@ def problem_parameters(NS_parameters, NS_expressions, commandline_kwargs, **NS_n
 
 # Create a mesh here
 def mesh(N, **params):
-    #m = UnitSquareMesh(N, N)
     m = RectangleMesh(Point(-0.5, -0.5), Point(0.5, 0.5), N, N)
     return m
 
 
 def create_bcs(ux_e, uy_e, p_e, V, Q, sys_comp, mesh, **NS_namespace):
-    #external_v = AutoSubDomain(lambda x, b: b and (near(x[1],0) or near(x[0],1) or near(x[1],1)))
-    external_v = AutoSubDomain(lambda x, b: b)
+    external = AutoSubDomain(lambda x, b: b)
     boundary = MeshFunction("size_t", mesh, mesh.topology().dim() - 1)
     boundary.set_all(0)
-    external_v.mark(boundary, 1)
-    #external_p = AutoSubDomain(lambda x, b: b and near(x[1],-0.5) )
-    #external_p.mark(boundary, 2)
-    #f = File("test.pvd")
-    #f << boundary
-
+    external.mark(boundary, 1)
     bcs = dict((ui, []) for ui in sys_comp)
     bc0 = DirichletBC(V, ux_e, boundary, 1)
     bc1 = DirichletBC(V, uy_e, boundary, 1)
-    bcp = DirichletBC(Q, p_e, boundary, 2)
-    #bcp = DirichletBC(Q, 100, 'near(x[1],0.0) && near(x[0],0.0)') # Only with odd value of N
+    bcp = DirichletBC(Q, p_e, boundary, 1)
     bcs['u0'] = [bc0]
     bcs['u1'] = [bc1]
-    bcs['p']  = []#[bcp]
+    bcs['p']  = [bcp]
 
     return bcs
 
@@ -109,7 +102,6 @@ def initialize(V, Q, q_1, q_2, ux_e, uy_e, p_e, dt, **NS_namespace):
 
     ux = project(ux_e, V)
     uy = project(uy_e, V)
-
     q_2["u0"].vector().axpy(1, ux.vector())
     q_2["u1"].vector().axpy(1, uy.vector())
 
@@ -117,14 +109,12 @@ def initialize(V, Q, q_1, q_2, ux_e, uy_e, p_e, dt, **NS_namespace):
         p_e.t_e  = 0.5*dt
     else:
         p_e.t_e  = 0
-
     ux_e.t_e = 0
     uy_e.t_e = 0
 
     ux = project(ux_e, V)
     uy = project(uy_e, V)
     p_ = project(p_e, Q)
-
     q_1["u0"].vector().axpy(1, ux.vector())
     q_1["u1"].vector().axpy(1, uy.vector())
     q_1["p"].vector().axpy(1, p_.vector())
@@ -133,8 +123,9 @@ def initialize(V, Q, q_1, q_2, ux_e, uy_e, p_e, dt, **NS_namespace):
 def pre_solve_hook(V, Q, mesh, newfolder, q_, t, velocity_degree, **NS_namespace):
     """Called prior to time loop"""
     viz_sol = XDMFFile(MPI.comm_world, path.join(newfolder, "VTK","solution.xdmf"))
-    viz_sol.parameters["rewrite_function_mesh"] = True
+    viz_sol.parameters["rewrite_function_mesh"] = False
     viz_sol.parameters["flush_output"] = True
+    viz_sol.parameters["functions_share_mesh"] = True
     pmms    = Function(Q, name="p_mms")
     uxmms   = Function(V, name="ux_mms")
     uymms   = Function(V, name="uy_mms")
@@ -151,54 +142,56 @@ def pre_solve_hook(V, Q, mesh, newfolder, q_, t, velocity_degree, **NS_namespace
 
 
 def start_timestep_hook(t, dt, p_e, ux_e, uy_e, t_e, **NS_namespace):
-    if 'IPCS' in NS_parameters['solver']:
-        p_e.t_e  = t - 0.5*dt
-    else:
-        p_e.t_e  = t
     ux_e.t_e = t
     uy_e.t_e = t
+    p_e.t_e  = t
     t_e.assign(t)
+    if 'IPCS' in NS_parameters['solver']:
+        p_e.t_e  = t - 0.5*dt
+        t_e.assign(t-dt/2)
 
 
-def temporal_hook(t, dt, q_, viz_sol, p_e, perror, pmms, psol, ux_e, uxerror,
-                  uxmms, uxsol, uy_e, uyerror, uymms, uysol, V, Q, **NS_namespace):
+def temporal_hook(t, dt, q_, viz_sol, p_e, perror, pmms, psol, ux_e, uxerror, tstep,
+                  xstep_save, uxmms, uxsol, uy_e, uyerror, uymms, uysol, V, Q, **NS_namespace):
 
-    p = interpolate(p_e, Q)
-    psol.vector().zero()
-    psol.vector().axpy(1, q_["p"].vector())
-    pmms.vector().zero()
-    pmms.vector().axpy(1, p.vector())
-    perror.vector().zero()
-    perror.vector().axpy(1, p.vector())
-    perror.vector().axpy(-1, q_["p"].vector())
+    if tstep % xstep_save == 0:
+        p = interpolate(p_e, Q)
+        psol.vector().zero()
+        psol.vector().axpy(1, q_["p"].vector())
+        pmms.vector().zero()
+        pmms.vector().axpy(1, p.vector())
+        perror.vector().zero()
+        perror.vector().axpy(1, p.vector())
+        perror.vector().axpy(-1, q_["p"].vector())
 
-    ux = interpolate(ux_e, V)
-    uxsol.vector().zero()
-    uxsol.vector().axpy(1, q_["u0"].vector())
-    uxmms.vector().zero()
-    uxmms.vector().axpy(1, ux.vector())
-    uxerror.vector().zero()
-    uxerror.vector().axpy(1, ux.vector())
-    uxerror.vector().axpy(-1, q_["u0"].vector())
+        ux = interpolate(ux_e, V)
+        uxsol.vector().zero()
+        uxsol.vector().axpy(1, q_["u0"].vector())
+        uxmms.vector().zero()
+        uxmms.vector().axpy(1, ux.vector())
+        uxerror.vector().zero()
+        uxerror.vector().axpy(1, ux.vector())
+        uxerror.vector().axpy(-1, q_["u0"].vector())
 
-    uy = interpolate(uy_e, V)
-    uysol.vector().zero()
-    uysol.vector().axpy(1, q_["u1"].vector())
-    uymms.vector().zero()
-    uymms.vector().axpy(1, uy.vector())
-    uyerror.vector().zero()
-    uyerror.vector().axpy(1, uy.vector())
-    uyerror.vector().axpy(-1, q_["u1"].vector())
+        uy = interpolate(uy_e, V)
+        uysol.vector().zero()
+        uysol.vector().axpy(1, q_["u1"].vector())
+        uymms.vector().zero()
+        uymms.vector().axpy(1, uy.vector())
+        uyerror.vector().zero()
+        uyerror.vector().axpy(1, uy.vector())
+        uyerror.vector().axpy(-1, q_["u1"].vector())
 
-    viz_sol.write(uxsol, t)
-    viz_sol.write(uxmms, t)
-    viz_sol.write(uxerror, t)
-    viz_sol.write(uysol, t)
-    viz_sol.write(uymms, t)
-    viz_sol.write(uyerror, t)
-    viz_sol.write(psol, t)
-    viz_sol.write(pmms, t)
-    viz_sol.write(perror, t)
+        viz_sol.write(uxsol, t)
+        viz_sol.write(uxmms, t)
+        viz_sol.write(uxerror, t)
+        viz_sol.write(uysol, t)
+        viz_sol.write(uymms, t)
+        viz_sol.write(uyerror, t)
+        viz_sol.write(psol, t)
+        viz_sol.write(pmms, t)
+        viz_sol.write(perror, t)
+
 
 # Print error at the end of the computation
 def theend_hook(V, Q, ux_e, uy_e, q_, T, dt, mesh, p_e, uxerror, uyerror, perror, **NS_namespace):
