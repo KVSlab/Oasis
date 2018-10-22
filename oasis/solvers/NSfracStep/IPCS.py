@@ -73,8 +73,9 @@ def pressure_solve(Fp, p_, bcs, dp_, x_, u_, q_, Q, **NS_namespace):
     solve(lhs(Fp) == rhs(Fp), p_, bcs['p'])
     if bcs['p'] == []:
         normalize(p_.vector())
-    dp_.vector()[:] = - dp_.vector()[:]
-    dp_.vector().axpy(1.0, x_['p'])
+    dpv = dp_.vector()
+    dpv *= -1
+    dpv.axpy(1.0, x_['p'])
 
 
 def velocity_update(u_components, q_, bcs, Fu, dp_, V, dt, **NS_namespace):

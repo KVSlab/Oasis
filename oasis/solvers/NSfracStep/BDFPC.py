@@ -90,11 +90,11 @@ def pressure_solve(Fp, p_, bcs, dp_, x_, nu, divu, Q, beta, **NS_namespace):
     solve(lhs(Fp) == rhs(Fp), p_, bcs['p'])
     if bcs['p'] == []:
         normalize(p_.vector())
-    #dp_.vector()._scale(-1)
-    dp_.vector()[:] = - dp_.vector()[:]
-    dp_.vector().axpy(1.0, x_['p'])
+    dpv = dp_.vector()
+    dpv *= -1
+    dpv.axpy(1.0, x_['p'])
     divu()
-    dp_.vector().axpy(nu, divu.vector())
+    dpv.axpy(nu, divu.vector())
 
 
 def velocity_update(u_components, q_, bcs, Fu, beta, gradp, dp_, dt, x_, **NS_namespace):

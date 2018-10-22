@@ -44,7 +44,6 @@ problem_parameters(**vars())
 vars().update(post_import_problem(**vars()))
 
 # Import chosen functionality from solvers
-#exec('from solvers.NSCoupled.{} import *'.format(solver))
 solver = importlib.import_module('.'.join(('oasis.solvers.NSCoupled', solver)))
 vars().update({name:solver.__dict__[name] for name in solver.__all__})
 
@@ -167,7 +166,7 @@ def iterate_scalar(iters=max_iter, errors=max_error):
                 scalar_hook(**globals())
                 scalar_solve(**globals())
                 err[ci] = b[ci].norm('l2')
-                if MPI.rank(MPI.comm_world) == 0:
+                if MPI.comm_world.Get_rank() == 0:
                     print('Iter {}, Error {} = {}'.format(citer, ci, err[ci]))
                 citer += 1
 
@@ -194,14 +193,15 @@ if len(scalar_components) > 0:
     iterate_scalar()
     scalar_timer.stop()
 
-#list_timings(TimingClear_clear, [TimingType_wall])
+
+list_timings(TimingClear.keep, [TimingType.wall])
 info_red('Total computing time = {0:f}'.format(timer.elapsed()[0]))
-#oasis_memory('Final memory use ')
-#total_initial_dolfin_memory = MPI.sum(MPI.comm_world, initial_memory_use)
-#info_red('Memory use for importing dolfin = {} MB (RSS)'.format(
-#    total_initial_dolfin_memory))
-#info_red('Total memory use of solver = ' +
-#            str(oasis_memory.memory - total_initial_dolfin_memory) + ' MB (RSS)')
+oasis_memory('Final memory use ')
+total_initial_dolfin_memory = MPI.sum(MPI.comm_world, initial_memory_use)
+info_red('Memory use for importing dolfin = {} MB (RSS)'.format(
+    total_initial_dolfin_memory))
+info_red('Total memory use of solver = ' +
+            str(oasis_memory.memory - total_initial_dolfin_memory) + ' MB (RSS)')
 
 # Final hook
 theend_hook(**vars())

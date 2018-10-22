@@ -4,7 +4,6 @@ import sys
 import json
 import six
 
-
 def convert(input):
     if isinstance(input, dict):
         return {convert(key): convert(value) for key, value in input.iter()}

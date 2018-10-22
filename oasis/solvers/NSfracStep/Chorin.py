@@ -44,7 +44,7 @@ def setup(u, q_, q_1, uc_comp, u_components, dt, v, U_AB, u_1,
 
     # Scalar with SUPG
     h = CellDiameter(mesh)
-    #vw = v + h * inner(grad(v), U_AB)
+    vw = v + h * inner(grad(v), U_AB)
     n = FacetNormal(mesh)
     for ci in scalar_components:
         F[ci] = ((1. / dt) * inner(u - q_1[ci], vw) * dx

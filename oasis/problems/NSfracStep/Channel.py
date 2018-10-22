@@ -103,10 +103,17 @@ def inlet(x, on_bnd):
 def body_force(nu, Re_tau, utau, **NS_namespace):
     return Constant((utau**2, 0., 0.))
 
+<<<<<<< HEAD
 def pre_solve_hook(V, u_, mesh, AssignedVectorFunction, newfolder, MPI, Nx, Ny, Nz, Lx,
                    Ly, Lz, **NS_namespace):
     """Called prior to time loop"""
     if MPI.rank(MPI.comm_world) == 0:
+=======
+def pre_solve_hook(V, u_, mesh, AssignedVectorFunction, newfolder, MPI,
+                    Nx, Ny, Nz, Lx, Ly, Lz, **NS_namespace):
+    """Called prior to time loop"""
+    if MPI.comm_world.Get_rank() == 0:
+>>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
         makedirs(path.join(newfolder, "Stats"))
 
     uv = AssignedVectorFunction(u_)
@@ -138,7 +145,11 @@ def create_bcs(V, q_, q_1, q_2, sys_comp, u_components, Ly, **NS_namespace):
 
 
 class RandomStreamVector(Expression):
+<<<<<<< HEAD
     random.seed(2 + MPI.rank(MPI.comm_world))
+=======
+    random.seed(2 + MPI.comm_world.Get_rank())
+>>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
 
     def eval(self, values, x):
         values[0] = 0.0005 * random.random()
@@ -197,7 +208,11 @@ def temporal_hook(q_, u_, V, tstep, uv, stats, update_statistics,
         u1 = assemble(dot(u_, normal) * ds(1, domain=mesh, subdomain_data=facets))
         normv = norm(q_['u1'].vector())
         normw = norm(q_['u2'].vector())
+<<<<<<< HEAD
         if MPI.rank(MPI.comm_world) == 0:
+=======
+        if MPI.comm_world.Get_rank() == 0:
+>>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
             print("Flux = ", u1, " tstep = ", tstep, " norm = ", normv, normw)
 
 def theend(newfolder, tstep, stats, **NS_namespace):

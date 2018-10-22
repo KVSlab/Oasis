@@ -145,8 +145,7 @@ def pressure_assemble(b, dt, divu, beta, Ap, x_, nu, u_, q, **NS_namespace):
     """Assemble rhs of pressure equation."""
     divu()  # Both computes div(u_) and the rhs div(u_)*q*dx
     b['p'][:] = divu.rhs
-    b['p'][:] = (-3.0 / beta(0) / dt) * b["p"][:]
-    #b['p']._scale(-3.0 / beta(0) / dt)
+    b['p'] *= (-3.0 / beta(0) / dt)
     b['p'].axpy(1., Ap * x_['p'])
     # There's a small difference here from BDFPC in the assembling of divu
     b['p'].axpy(-nu, Ap * divu.vector())  # This is fast
@@ -170,12 +169,20 @@ def pressure_solve(dp_, x_, Ap, b, p_sol, bcs, nu, divu, Q, beta, **NS_namespace
     if hasattr(p_sol, 'normalize'):
         normalize(x_['p'])
 
+<<<<<<< HEAD
     dp_.vector()[:] = - dp_.vector()[:]
     #dp_.vector()._scale(-1)
     dp_.vector().axpy(1.0, x_['p'])
     dp_.vector().axpy(nu, divu.vector())
     dp_.vector()[:] = (beta(0) / 3.0) * dp_.vector()[:]
     #dp_.vector()._scale(beta(0) / 3.0)  # To reuse code from IPCS_ABCN
+=======
+    dpv = dp_.vector()
+    dpv *= -1
+    dpv.axpy(1.0, x_['p'])
+    dpv.axpy(nu, divu.vector())
+    dpv *= (beta(0) / 3.0)  # To reuse code from IPCS_ABCN
+>>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
 
 
 def velocity_update(u_components, bcs, dp_, dt, x_, gradp, beta, **NS_namespace):
