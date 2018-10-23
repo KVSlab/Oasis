@@ -124,10 +124,6 @@ def get_solvers(use_krylov_solvers, krylov_solvers, bcs,
         sols = [u_sol, p_sol]
         ## scalar solver ##
         if len(scalar_components) > 0:
-<<<<<<< HEAD
-            c_prec = PETScPreconditioner(scalar_krylov_solver['preconditioner_type'])
-            c_sol = PETScKrylovSolver(scalar_krylov_solver['solver_type'], c_prec)
-=======
             c_prec = PETScPreconditioner(
                 scalar_krylov_solver['preconditioner_type'])
             c_sol = PETScKrylovSolver(
@@ -135,7 +131,6 @@ def get_solvers(use_krylov_solvers, krylov_solvers, bcs,
             #c_sol.prec = c_prec
             # c_sol = KrylovSolver(scalar_krylov_solver['solver_type'],
             # scalar_krylov_solver['preconditioner_type'])
->>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
             c_sol.parameters.update(krylov_solvers)
             #c_sol.parameters['preconditieoner']['structure'] = 'same_nonzero_pattern'
             sols.append(c_sol)
@@ -178,11 +173,7 @@ def assemble_first_inner_iter(A, a_conv, dt, M, scalar_components, les_model,
         u_ab[i].vector().axpy(-0.5, x_2[ui])
 
     A = assemble(a_conv, tensor=A)
-<<<<<<< HEAD
-    A.axpy(-1.5, A, True)    # Negative convection on the rhs
-=======
     A *= -0.5                 # Negative convection on the rhs
->>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
     A.axpy(1. / dt, M, True)  # Add mass
 
     # Set up scalar matrix for rhs using the same convection as velocity
@@ -209,11 +200,7 @@ def assemble_first_inner_iter(A, a_conv, dt, M, scalar_components, les_model,
             b_tmp[ui].axpy(1., LT.vector())
 
     # Reset matrix for lhs
-<<<<<<< HEAD
-    A.axpy(-2., A, True)
-=======
     A *= -1.
->>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
     A.axpy(2. / dt, M, True)
     [bc.apply(A) for bc in bcs['u0']]
 
@@ -257,11 +244,7 @@ def pressure_assemble(b, x_, dt, Ap, divu, **NS_namespace):
     """Assemble rhs of pressure equation."""
     divu.assemble_rhs()  # Computes div(u_)*q*dx
     b['p'][:] = divu.rhs
-<<<<<<< HEAD
-    b['p'][:] = (-1. / dt) * b["p"][:]
-=======
     b['p'] *= (-1. / dt)
->>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
     b['p'].axpy(1., Ap * x_['p'])
 
 
@@ -281,14 +264,9 @@ def pressure_solve(dp_, x_, Ap, b, p_sol, bcs, **NS_namespace):
     if hasattr(p_sol, 'normalize'):
         normalize(x_['p'])
 
-<<<<<<< HEAD
-    dp_.vector().axpy(-1., x_['p'])
-    dp_.vector()[:] = -dp_.vector()[:]
-=======
     dpv = dp_.vector()
     dpv.axpy(-1., x_['p'])
     dpv *= -1.
->>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
 
 
 def velocity_update(u_components, bcs, gradp, dp_, dt, x_, **NS_namespace):
@@ -304,11 +282,7 @@ def scalar_assemble(a_scalar, a_conv, Ta, dt, M, scalar_components, Schmidt_T, K
     # Just in case you want to use a different scalar convection
     if not a_scalar is a_conv:
         assemble(a_scalar, tensor=Ta)
-<<<<<<< HEAD
-        Ta.axpy(-1.5, Ta, True)      # Negative convection on the rhs
-=======
         Ta *= -0.5            # Negative convection on the rhs
->>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
         Ta.axpy(1. / dt, M, True)    # Add mass
 
     # Compute rhs for all scalars
@@ -329,11 +303,7 @@ def scalar_assemble(a_scalar, a_conv, Ta, dt, M, scalar_components, Schmidt_T, K
             Ta.axpy(0.5 / Schmidt_T[ci], KT[0], True)
 
     # Reset matrix for lhs - Note scalar matrix does not contain diffusion
-<<<<<<< HEAD
-    Ta.axpy(-2., Ta, True)
-=======
     Ta *= -1.
->>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
     Ta.axpy(2. / dt, M, True)
 
 

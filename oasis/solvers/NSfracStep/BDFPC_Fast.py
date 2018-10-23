@@ -169,21 +169,11 @@ def pressure_solve(dp_, x_, Ap, b, p_sol, bcs, nu, divu, Q, beta, **NS_namespace
     if hasattr(p_sol, 'normalize'):
         normalize(x_['p'])
 
-<<<<<<< HEAD
-    dp_.vector()[:] = - dp_.vector()[:]
-    #dp_.vector()._scale(-1)
-    dp_.vector().axpy(1.0, x_['p'])
-    dp_.vector().axpy(nu, divu.vector())
-    dp_.vector()[:] = (beta(0) / 3.0) * dp_.vector()[:]
-    #dp_.vector()._scale(beta(0) / 3.0)  # To reuse code from IPCS_ABCN
-=======
     dpv = dp_.vector()
     dpv *= -1
     dpv.axpy(1.0, x_['p'])
     dpv.axpy(nu, divu.vector())
     dpv *= (beta(0) / 3.0)  # To reuse code from IPCS_ABCN
->>>>>>> 976fbae8237c2caef8b2addd5c05a015e5aa4460
-
 
 def velocity_update(u_components, bcs, dp_, dt, x_, gradp, beta, **NS_namespace):
     """Update the velocity after regular pressure velocity iterations."""
